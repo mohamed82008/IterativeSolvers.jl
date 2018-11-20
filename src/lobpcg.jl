@@ -116,7 +116,7 @@ end
 gmul!(C, A, B) = mul!(C, A, B)
 gmul!(C, A::GPUArray, B::AbstractArray) = gmul!(C, A, typeof(A)(B))
 gmul!(C, A::AbstractArray, B::GPUArray) = gmul!(C, typeof(B)(A), B)
-gmul!(C::AbstractArray, A::GPUArray, B::GPUArray) = C .= A * B
+gmul!(C::AbstractArray, A::GPUArray, B::GPUArray) = copyto!(C, Array(A * B))
 gmul!(C::GPUArray, A::GPUArray, B::GPUArray) = mul!(C, A, B)
 
 struct Blocks{Generalized, T, TA<:AbstractArray{T}}
