@@ -48,6 +48,10 @@ function iterate(it::CGIterable, iteration::Int=start(it))
     it.u .= it.r .+ β .* it.u
 
     # c = A * u
+    println("Running mul! with argument types: \n")
+    println("   - $(typeof(it.c)) \n")
+    println("   - $(typeof(it.A)) \n")
+    println("   - $(typeof(it.u)) \n\n")
     mul!(it.c, it.A, it.u)
     α = it.residual^2 / dot(it.u, it.c)
 
